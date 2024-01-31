@@ -1,5 +1,7 @@
 # TributoJustoFrontEnd
 
+Teste realizado para a Tributo Justo.
+
 ## Project setup
 ```
 npm install
