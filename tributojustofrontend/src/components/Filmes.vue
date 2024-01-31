@@ -17,7 +17,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="livro in livros" v-bind:key="livro.id">
+        <tr v-for="filme in filmes" v-bind:key="filme.id">
           <th scope="row">1</th>
           <td>{{Title}}</td>
           <td>{{Year}}</td>

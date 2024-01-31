@@ -18,11 +18,28 @@
 </template>
 
 <script>
+//import axios from 'axios'
 export default {
   name: 'LoginComponent',
   props: {
     msg: String
-  }
+  },
+  // data: () => {
+  //   return {
+  //     login: [],
+  //   }
+  // },
+  // methods: {
+  //   lista: (scope) => {
+  //     axios.get("https://localhost:7222/v1/Auth/Login").then((res) => {
+  //       scope.login = res.data;
+  //     });
+  //   }
+  // },
+
+  // created() {
+  //   this.lista(this)
+  // }
 }
 
 </script>

@@ -6,6 +6,7 @@
   <a href="/cadastro" class="btn btn-secundary">Fazer cadastro</a>
   <a href="/livros" class="btn btn-secundary">Livro</a>
   <a href="/filmes" class="btn btn-secundary">Filmes</a>
+  <a href="/favoritos" class="btn btn-secundary">Favoritos</a>
   <p>
     <!-- use the router-link component for navigation. -->
     <!-- specify the link by passing the `to` prop. -->
