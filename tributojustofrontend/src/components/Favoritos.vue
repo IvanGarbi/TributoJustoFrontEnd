@@ -1,6 +1,7 @@
 <template>
     <div class="hello">
-      <h1>{{ msg }}</h1>
+      <br>
+      <h3>Filmes</h3>
     <table class="table">
       <thead>
         <tr>
@@ -13,11 +14,12 @@
           <th scope="col">Actors</th>
           <th scope="col">Plot</th>
           <th scope="col">Country</th>
-          <th scope="col">imdbRating</th>
+          <th scope="col">ImdbRating</th>
+          <th scope="col">Deletar</th>
         </tr>
       </thead>
       <tbody>
-        <tr v-for="livro in livros" v-bind:key="livro.id">
+        <tr v-for="filme in listaFavoritos.filmeViewModel" v-bind:key="filme.id">
           <th scope="row">1</th>
           <td>{{Title}}</td>
           <td>{{Year}}</td>
@@ -28,30 +30,34 @@
           <td>{{Plot}}</td>
           <td>{{Country}}</td>
           <td>{{imdbRating}}</td>
+          <td v-on:click="deletar(filme.id)">Deletar</td>
         </tr>
       </tbody>
     </table>
     </div>
 
+    <br>
+    <h3>Livros</h3>
     <table class="table">
     <thead>
       <tr>
         <th scope="col">#</th>
-        <th scope="col">title</th>
-        <th scope="col">authors</th>
-        <th scope="col">categories</th>
-        <th scope="col">publisher</th>
-        <th scope="col">pageCount</th>
-        <th scope="col">description</th>
+        <th scope="col">Title</th>
+        <th scope="col">Authors</th>
+        <th scope="col">Categories</th>
+        <th scope="col">Publisher</th>
+        <th scope="col">PageCount</th>
+        <th scope="col">Description</th>
         <th scope="col">Sale country</th>
-        <th scope="col">amount</th>
-        <th scope="col">currencyCode</th>
-        <th scope="col">country</th>
-        <th scope="col">saleability</th>
+        <th scope="col">Amount</th>
+        <th scope="col">CurrencyCode</th>
+        <th scope="col">Country</th>
+        <th scope="col">Saleability</th>
+        <th scope="col">Deletar</th>
       </tr>
     </thead>
     <tbody>
-      <tr v-for="livro in livros" v-bind:key="livro.id">
+      <tr v-for="livro in listaFavoritos.livroViewModel" v-bind:key="livro.id">
         <th scope="row">1</th>
         <td>{{title}}</td>
         <td>{{authors}}</td>
@@ -64,16 +70,39 @@
         <td>{{currencyCode}}</td>
         <td>{{country}}</td>
         <td>{{saleability}}</td>
+        <td v-on:click="deletar(livro.id)">Deletar</td>
       </tr>
     </tbody>
   </table>
   </template>
 
 <script>
+import axios from 'axios'
 export default {
   name: 'FavoritoComponent',
-  props: {
-    msg: String
+  data: () => {
+    return {
+      listaFavoritos: [],
+    }
+  },
+  methods: {
+    favoritos: (scope) => {
+      axios.get("https://localhost:7222/v1/Favoritos/", {
+        usuarioId: "8cba5766-acea-46b3-934f-60354880e0e3" // guid qualquer para simular id do usuário logado
+      }).then((res) => {
+        scope.listaFavoritos = res.data
+      });
+    }
+  },
+  deletar: (id) => {
+      axios.post("https://localhost:7222/v1/Favorito/Deletar/",{
+        id: id,
+      }).then(() => {
+
+      })
+    },
+  created() {
+    this.favoritos(this)
   }
 }
 
